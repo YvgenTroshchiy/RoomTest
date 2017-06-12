@@ -7,7 +7,7 @@ import android.arch.persistence.room.*
     @get:Query("SELECT * FROM ${UserSheme.TABLE_NAME}")
     val all: List<User>
 
-    @Query("SELECT * FROM ${UserSheme.TABLE_NAME} WHERE ${UserSheme.LAST_NAME} LIKE :arg0")
+    @Query("SELECT * FROM ${UserSheme.TABLE_NAME} WHERE ${UserSheme.LAST_NAME} = :arg0")
     fun getByLastName(lastName: String?): User
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -18,7 +18,7 @@ import android.arch.persistence.room.*
 
     @Delete fun delete(user: User)
 
-    @Query("DELETE FROM ${UserSheme.TABLE_NAME} WHERE ${UserSheme.LAST_NAME} LIKE :arg0")
+    @Query("DELETE FROM ${UserSheme.TABLE_NAME} WHERE ${UserSheme.LAST_NAME} = :arg0")
     fun deleteByLastName(lastName: String?)
 
     @Query("DELETE FROM ${UserSheme.TABLE_NAME}")

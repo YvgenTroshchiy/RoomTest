@@ -53,13 +53,13 @@ class MainActivity : AppCompatActivity() {
 //            DB?.userDao()?.insertAll(*arrayOf(user1, user2, user3, user4))
 
 //            DB?.userDao()?.deleteAll() //Delete
+//            DB?.userDao()?.deleteByLastName("Ginger")
 
             val allUsers = DB?.userDao()?.all
 
-            DB?.userDao()?.deleteByLastName("Ginger")
-            runOnUiThread { logDataBase(allUsers) }
+//            runOnUiThread { logDataBase(allUsers) }
 
-//            Log.e(TAG, DB?.userDao()?.getByLastName("Ginger").toString())
+            Log.w(TAG, "getByLastName: " + DB?.userDao()?.getByLastName("Ginger").toString())
         }
     }
 
