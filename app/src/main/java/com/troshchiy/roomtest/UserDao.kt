@@ -1,12 +1,14 @@
 package com.troshchiy.roomtest
 
 import android.arch.persistence.room.*
-import com.troshchiy.roomtest.User.Companion.USERS_TABLE_NAME
 
 @Dao interface UserDao {
 
-    @get:Query("SELECT * FROM " + USERS_TABLE_NAME)
+    @get:Query("SELECT * FROM ${UserSheme.TABLE_NAME}")
     val all: List<User>
+
+    @Query("SELECT * FROM ${UserSheme.TABLE_NAME} WHERE ${UserSheme.LAST_NAME} LIKE :arg0")
+    fun getByLastName(lastName: String?): User
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg users: User)
@@ -16,7 +18,6 @@ import com.troshchiy.roomtest.User.Companion.USERS_TABLE_NAME
 
     @Delete fun delete(user: User)
 
-    @Query("DELETE FROM " + USERS_TABLE_NAME)
+    @Query("DELETE FROM ${UserSheme.TABLE_NAME}")
     fun deleteAll()
-
 }
