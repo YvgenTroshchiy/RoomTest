@@ -56,9 +56,10 @@ class MainActivity : AppCompatActivity() {
 
             val allUsers = DB?.userDao()?.all
 
+            DB?.userDao()?.deleteByLastName("Ginger")
             runOnUiThread { logDataBase(allUsers) }
 
-            Log.e(TAG, DB?.userDao()?.getByLastName("Ginger").toString())
+//            Log.e(TAG, DB?.userDao()?.getByLastName("Ginger").toString())
         }
     }
 

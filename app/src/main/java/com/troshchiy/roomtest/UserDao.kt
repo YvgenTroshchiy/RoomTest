@@ -18,6 +18,9 @@ import android.arch.persistence.room.*
 
     @Delete fun delete(user: User)
 
+    @Query("DELETE FROM ${UserSheme.TABLE_NAME} WHERE ${UserSheme.LAST_NAME} LIKE :arg0")
+    fun deleteByLastName(lastName: String?)
+
     @Query("DELETE FROM ${UserSheme.TABLE_NAME}")
     fun deleteAll()
 }
