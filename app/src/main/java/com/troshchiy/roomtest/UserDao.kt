@@ -2,6 +2,8 @@ package com.troshchiy.roomtest
 
 import android.arch.persistence.room.*
 
+// Kotlin isn't preserving the names of the arguments properly
+// this is https://youtrack.jetbrains.com/issue/KT-17959
 @Dao interface UserDao {
 
     @get:Query("SELECT * FROM ${UserSheme.TABLE_NAME}")
