@@ -7,16 +7,11 @@ import com.troshchiy.roomtest.UserSheme.Companion.FIRST_NAME
 import com.troshchiy.roomtest.UserSheme.Companion.LAST_NAME
 import com.troshchiy.roomtest.UserSheme.Companion.TABLE_NAME
 
-@Entity(tableName = TABLE_NAME) class User {
-
-    @PrimaryKey(autoGenerate = true) var id: Int = 0
-    @ColumnInfo(name = FIRST_NAME) var firstName: String? = null
-    @ColumnInfo(name = LAST_NAME) var lastName: String? = null
-
-    override fun toString(): String {
-        return "User(id: $id, firstName: $firstName, lastName: $lastName)"
-    }
-}
+@Entity(tableName = TABLE_NAME) data class User(
+        @PrimaryKey(autoGenerate = true) var id: Int = 0,
+        @ColumnInfo(name = FIRST_NAME) var firstName: String? = null,
+        @ColumnInfo(name = LAST_NAME) var lastName: String? = null
+)
 
 class UserSheme {
     companion object {

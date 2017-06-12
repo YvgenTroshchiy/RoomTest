@@ -21,43 +21,23 @@ class MainActivity : AppCompatActivity() {
             Log.w(TAG, "DB", e)
         }
 
-        val user1 = User()
-        user1.firstName = "Ivan"
-        user1.lastName = "Ivanov"
-
-        val user2 = User()
-        user2.firstName = "Petr"
-        user2.lastName = "Petrov"
-
-        val user3 = User()
-        user3.firstName = "Tanya"
-        user3.lastName = "Obnimyau"
-
-        val user4 = User()
-        user4.firstName = "Cat"
-        user4.lastName = "Ginger"
-
         doAsync {
-            //            DB?.userDao()?.insert(user1)
-//            DB?.userDao()?.insert(user2)
-//            DB?.userDao()?.insert(user3)
-//            DB?.userDao()?.insert(user4)
+            DB?.userDao()?.clear() //Delete
+
+            DB?.userDao()?.insert(User(firstName = "Ivan", lastName = "Ivanov"))
+            DB?.userDao()?.insert(User(firstName = "Petr", lastName = "Petrov"))
+            DB?.userDao()?.insert(User(firstName = "Tanya", lastName = "Tatyanina"))
+            DB?.userDao()?.insert(User(firstName = "Cat", lastName = "Ginger"))
+            DB?.userDao()?.insert(User(firstName = "Yevhen", lastName = "Troshchii"))
 
             val users = ArrayList<User>()
-            users.add(user1)
-            users.add(user2)
-            users.add(user3)
-            users.add(user4)
+//            DB?.userDao()?.insertAll(*arrayOf(user1, user2, user3, user4, user5))
 
-//            DB?.userDao()?.insertAll(*arrayOf(user1, user2, user3, user4))
-//            DB?.userDao()?.insertAll(*arrayOf(user1, user2, user3, user4))
-
-//            DB?.userDao()?.deleteAll() //Delete
 //            DB?.userDao()?.deleteByLastName("Ginger")
 
             val allUsers = DB?.userDao()?.all
 
-//            runOnUiThread { logDataBase(allUsers) }
+            runOnUiThread { logDataBase(allUsers) }
 
             Log.w(TAG, "getByLastName: " + DB?.userDao()?.getByLastName("Ginger").toString())
         }
