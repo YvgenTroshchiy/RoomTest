@@ -26,9 +26,13 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
+    // Anko Commons
+    compile "org.jetbrains.anko:anko-commons:$anko_version"
+
     // Room
-    compile "android.arch.persistence.room:runtime:1.0.0-alpha1"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha1"
+    compile "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
 //    testCompile "android.arch.persistence.room:testing:1.0.0-alpha1"
 //    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha1"
 

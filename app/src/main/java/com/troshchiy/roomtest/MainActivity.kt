@@ -1,9 +1,10 @@
 package com.troshchiy.roomtest
 
+import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.troshchiy.roomtest.App.Companion.DB
+import org.jetbrains.anko.doAsync
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +13,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var DB: AppDatabase? = null
+        try {
+            DB = Room.databaseBuilder(applicationContext, AppDatabase::class.java, AppDatabase.DATABASE_NAME).build()
+        } catch (e: Exception) {
+            Log.w(TAG, "DB", e)
+        }
 
         val user1 = User()
         user1.firstName = "Ivan"
@@ -29,26 +37,31 @@ class MainActivity : AppCompatActivity() {
         user4.firstName = "Cat"
         user4.lastName = "Ginger"
 
-        DB?.userDao()?.insert(user1)
-        DB?.userDao()?.insert(user2)
-        DB?.userDao()?.insert(user3)
-        DB?.userDao()?.insert(user4)
+        doAsync {
+            //            DB?.userDao()?.insert(user1)
+//            DB?.userDao()?.insert(user2)
+//            DB?.userDao()?.insert(user3)
+//            DB?.userDao()?.insert(user4)
 
-        DB?.setTransactionSuccessful()
-        DB?.endTransaction()
+            val users = ArrayList<User>()
+            users.add(user1)
+            users.add(user2)
+            users.add(user3)
+            users.add(user4)
 
-        val users = ArrayList<User>()
-        users.add(user1)
-        users.add(user2)
-        users.add(user3)
-        users.add(user4)
+//            DB?.userDao()?.insertAll(*arrayOf(user1, user2, user3, user4))
+//            DB?.userDao()?.insertAll(*arrayOf(user1, user2, user3, user4))
 
-//        DB?.userDao()?.insertAll(users)
-//        DB?.setTransactionSuccessful()
+//            DB?.userDao()?.deleteAll() //Delete
 
-        val allUsers = DB?.userDao()?.all
-        val o = 0
+            val allUsers = DB?.userDao()?.all
 
+            runOnUiThread { logDataBase(allUsers) }
+        }
+    }
+
+    private fun logDataBase(allUsers: List<User>?) {
+        Log.w(TAG, "allUsers.size: ${allUsers?.size}")
         Log.d(TAG, allUsers.toString())
     }
 }

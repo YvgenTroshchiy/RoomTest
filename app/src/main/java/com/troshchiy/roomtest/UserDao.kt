@@ -1,26 +1,22 @@
 package com.troshchiy.roomtest
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Delete
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
+import com.troshchiy.roomtest.User.Companion.USERS_TABLE_NAME
 
-@Dao
-interface UserDao {
+@Dao interface UserDao {
 
-    @get:Query("SELECT * FROM user")
+    @get:Query("SELECT * FROM " + USERS_TABLE_NAME)
     val all: List<User>
 
-//    @Query("SELECT * FROM user")
-//    fun all(): List<User>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(vararg users: User)
 
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " + "last_name LIKE :last LIMIT 1")
-    fun findByName(first: String, last: String): User
-
-    @Insert fun insertAll(vararg users: User)
-
-    @Insert fun insert(users: User)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(users: User)
 
     @Delete fun delete(user: User)
+
+    @Query("DELETE FROM " + USERS_TABLE_NAME)
+    fun deleteAll()
 
 }
