@@ -3,6 +3,7 @@ package com.troshchiy.roomtest
 import android.app.Application
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
+import com.troshchiy.roomtest.AppDatabase.Companion.DATABASE_NAME
 
 class App : Application() {
 
@@ -13,6 +14,6 @@ class App : Application() {
 
     init {
         APP = this
-        DB = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "room_test_database").build()
+        DB = Room.databaseBuilder(applicationContext, AppDatabase::class.java, DATABASE_NAME).build()
     }
 }
