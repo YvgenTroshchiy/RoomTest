@@ -29,6 +29,11 @@ dependencies {
     // Anko Commons
     compile "org.jetbrains.anko:anko-commons:$anko_version"
 
+    // Paper Parcel
+    compile 'nz.bradcampbell:paperparcel:2.0.1'
+    compile 'nz.bradcampbell:paperparcel-kotlin:2.0.1' // Optional
+    kapt 'nz.bradcampbell:paperparcel-compiler:2.0.1'
+
     // Room
     compile "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
