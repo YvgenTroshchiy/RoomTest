@@ -23,22 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         doAsync {
             DB?.userDao()?.clear() //Delete
-
-            DB?.userDao()?.insert(User(firstName = "James", lastName = "Smith", age = 35))
-            DB?.userDao()?.insert(User(firstName = "John", lastName = "Jones", age = 22))
-            DB?.userDao()?.insert(User(firstName = "Robert", lastName = "Taylor", age = 29))
-            DB?.userDao()?.insert(User(firstName = "Michael", lastName = "Williams", age = 14))
-            DB?.userDao()?.insert(User(firstName = "William", lastName = "Brown", age = 28))
-            DB?.userDao()?.insert(User(firstName = "David", lastName = "Davies", age = 24))
-            DB?.userDao()?.insert(User(firstName = "Richard", lastName = "Evans", age = 27))
-            DB?.userDao()?.insert(User(firstName = "Mary", lastName = "Wilson", age = 31))
-            DB?.userDao()?.insert(User(firstName = "Patricia", lastName = "Thomas", age = 31))
-            DB?.userDao()?.insert(User(firstName = "Linda", lastName = "Roberts", age = 17))
-            DB?.userDao()?.insert(User(firstName = "Barbara", lastName = "Johnson", age = 26))
-            DB?.userDao()?.insert(User(firstName = "Elizabeth", lastName = "Lewis", age = 23))
-            DB?.userDao()?.insert(User(firstName = "Jennifer", lastName = "Walker", age = 16))
-            DB?.userDao()?.insert(User(firstName = "Maria", lastName = "Robinson", age = 17))
-            DB?.userDao()?.insert(User(firstName = "Susan", lastName = "Wood", age = 20))
+            fillDb(DB)
 
             val users = ArrayList<User>()
 //            DB?.userDao()?.insertAll(*arrayOf(user1, user2, user3, user4, user5))
@@ -49,8 +34,26 @@ class MainActivity : AppCompatActivity() {
 
             runOnUiThread { logDataBase(allUsers) }
 
-            Log.w(TAG, "getByLastName: " + DB?.userDao()?.getByLastName("Ginger").toString())
+            Log.w(TAG, "getByLastName: " + DB?.userDao()?.getByLastName("Roberts").toString())
         }
+    }
+
+    private fun fillDb(DB: AppDatabase?) {
+        DB?.userDao()?.insert(User(firstName = "James", lastName = "Smith", age = 35))
+        DB?.userDao()?.insert(User(firstName = "John", lastName = "Jones", age = 22))
+        DB?.userDao()?.insert(User(firstName = "Robert", lastName = "Taylor", age = 29))
+        DB?.userDao()?.insert(User(firstName = "Michael", lastName = "Williams", age = 14))
+        DB?.userDao()?.insert(User(firstName = "William", lastName = "Brown", age = 28))
+        DB?.userDao()?.insert(User(firstName = "David", lastName = "Davies", age = 24))
+        DB?.userDao()?.insert(User(firstName = "Richard", lastName = "Evans", age = 27))
+        DB?.userDao()?.insert(User(firstName = "Mary", lastName = "Wilson", age = 31))
+        DB?.userDao()?.insert(User(firstName = "Patricia", lastName = "Thomas", age = 31))
+        DB?.userDao()?.insert(User(firstName = "Linda", lastName = "Roberts", age = 17))
+        DB?.userDao()?.insert(User(firstName = "Barbara", lastName = "Johnson", age = 26))
+        DB?.userDao()?.insert(User(firstName = "Elizabeth", lastName = "Lewis", age = 23))
+        DB?.userDao()?.insert(User(firstName = "Jennifer", lastName = "Walker", age = 16))
+        DB?.userDao()?.insert(User(firstName = "Maria", lastName = "Robinson", age = 17))
+        DB?.userDao()?.insert(User(firstName = "Susan", lastName = "Wood", age = 20))
     }
 
     private fun logDataBase(allUsers: List<User>?) {
