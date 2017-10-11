@@ -21,6 +21,7 @@ import com.troshchiy.roomtest.UserSheme.Companion.TABLE_NAME
 class UserSheme {
     companion object {
         const val TABLE_NAME = "users"
+
         const val FIRST_NAME = "first_name"
         const val LAST_NAME = "last_name"
     }

@@ -3,12 +3,13 @@ apply plugin: 'kotlin-android'
 //apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
     defaultConfig {
         applicationId "com.troshchiy.roomtest"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -23,12 +24,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // Anko Commons
-    compile "org.jetbrains.anko:anko-commons:$anko_version"
+    compile 'org.jetbrains.anko:anko-common:0.9'
+//    compile "org.jetbrains.anko:anko-commons:$anko_version"
 
     // Paper Parcel
 //    compile 'nz.bradcampbell:paperparcel:2.0.1'
@@ -53,6 +55,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }
+
 repositories {
     mavenCentral()
+    google()
 }
