@@ -24,11 +24,21 @@ class MainActivity : AppCompatActivity() {
         doAsync {
             DB?.userDao()?.clear() //Delete
 
-            DB?.userDao()?.insert(User(firstName = "Ivan", lastName = "Ivanov"))
-            DB?.userDao()?.insert(User(firstName = "Petr", lastName = "Petrov"))
-            DB?.userDao()?.insert(User(firstName = "Tanya", lastName = "Tatyanina"))
-            DB?.userDao()?.insert(User(firstName = "Cat", lastName = "Ginger"))
-            DB?.userDao()?.insert(User(firstName = "Yevhen", lastName = "Troshchii"))
+            DB?.userDao()?.insert(User(firstName = "James", lastName = "Smith"))
+            DB?.userDao()?.insert(User(firstName = "John", lastName = "Jones"))
+            DB?.userDao()?.insert(User(firstName = "Robert", lastName = "Taylor"))
+            DB?.userDao()?.insert(User(firstName = "Michael", lastName = "Williams"))
+            DB?.userDao()?.insert(User(firstName = "William", lastName = "Brown"))
+            DB?.userDao()?.insert(User(firstName = "David", lastName = "Davies"))
+            DB?.userDao()?.insert(User(firstName = "Richard", lastName = "Evans"))
+            DB?.userDao()?.insert(User(firstName = "Mary", lastName = "Wilson"))
+            DB?.userDao()?.insert(User(firstName = "Patricia", lastName = "Thomas"))
+            DB?.userDao()?.insert(User(firstName = "Linda", lastName = "Roberts"))
+            DB?.userDao()?.insert(User(firstName = "Barbara", lastName = "Johnson"))
+            DB?.userDao()?.insert(User(firstName = "Elizabeth", lastName = "Lewis"))
+            DB?.userDao()?.insert(User(firstName = "Jennifer", lastName = "Walker"))
+            DB?.userDao()?.insert(User(firstName = "Maria", lastName = "Robinson"))
+            DB?.userDao()?.insert(User(firstName = "Susan", lastName = "Wood"))
 
             val users = ArrayList<User>()
 //            DB?.userDao()?.insertAll(*arrayOf(user1, user2, user3, user4, user5))
