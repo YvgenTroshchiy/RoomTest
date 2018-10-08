@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
-
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.troshchiy.roomtest"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -22,38 +21,42 @@ android {
     }
 }
 
+androidExtensions { experimental = true }
+
+ext {
+    room_version = "2.0.0"
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    // region General
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // endregion
 
-    // Anko Commons
-    compile 'org.jetbrains.anko:anko-common:0.9'
-//    compile "org.jetbrains.anko:anko-commons:$anko_version"
+    // region Kotlin Utilities
+    implementation 'org.jetbrains.anko:anko:0.10.3'
+    implementation 'androidx.core:core-ktx:1.0.0'
+    // endregion
 
-    // Paper Parcel
-//    compile 'nz.bradcampbell:paperparcel:2.0.1'
-//    compile 'nz.bradcampbell:paperparcel-kotlin:2.0.1' // Optional
-//    kapt 'nz.bradcampbell:paperparcel-compiler:2.0.1'
+    // region Ui
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    // endregion
 
-    // Room
-    compile "android.arch.persistence.room:runtime:$room_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
-    kapt "android.arch.persistence.room:compiler:$room_version"
-//    testCompile "android.arch.persistence.room:testing:1.0.0-alpha1"
-//    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha1"
+    // region Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version" // use kapt for Kotlin
+//    implementation "androidx.room:room-rxjava2:$room_version" // optional - RxJava support for Room
+//    implementation "androidx.room:room-guava:$room_version" // optional - Guava support for Room, including Optional and ListenableFuture
+    // endregion
 
-    // Room For Lifecycles, LiveData, and ViewModel
-//    compile "android.arch.lifecycle:runtime:1.0.0-alpha1"
-//    compile "android.arch.lifecycle:extensions:1.0.0-alpha1"
-//    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha1"
-
-    // Test
-    testCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    // region Tests
+    testImplementation 'junit:junit:4.12'
+//    testImplementation "androidx.room:room-testing:$room_version"
+    androidTestImplementation 'androidx.test:runner:1.1.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta01'
+    // endregion
 }
 
 repositories {
