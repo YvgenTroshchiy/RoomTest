@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.troshchiy.roomtest"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -24,7 +24,7 @@ android {
 androidExtensions { experimental = true }
 
 ext {
-    room_version = "2.0.0"
+    room_version = "2.2.0"
 }
 
 dependencies {
@@ -34,13 +34,13 @@ dependencies {
     // endregion
 
     // region Kotlin Utilities
-    implementation 'org.jetbrains.anko:anko:0.10.3'
-    implementation 'androidx.core:core-ktx:1.0.1'
+    implementation 'org.jetbrains.anko:anko:0.10.8'
+    implementation 'androidx.core:core-ktx:1.1.0'
     // endregion
 
     // region Ui
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
     implementation 'com.squareup.picasso:picasso:2.71828'
     // endregion
 
@@ -56,9 +56,9 @@ dependencies {
 
     // region Tests
     testImplementation 'junit:junit:4.12'
-//    testImplementation "androidx.room:room-testing:$room_version"
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    testImplementation "androidx.room:room-testing:$room_version"
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     // endregion
 }
 

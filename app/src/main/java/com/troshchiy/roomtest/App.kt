@@ -9,15 +9,9 @@ class App : Application() {
 
     companion object {
         lateinit var APP: App
-//        lateinit var database: AppDatabase
     }
 
     init {
         APP = this
-//        database = Room.databaseBuilder(APP, AppDatabase::class.java, AppDatabase.DATABASE_NAME).build()
-    }
-
-    override fun onCreate() {
-        super.onCreate()
     }
 }
