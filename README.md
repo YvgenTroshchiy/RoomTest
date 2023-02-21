@@ -1,3 +1,7 @@
 # Users list application
 
-Room, Hilt, Coroutines, Flow
+Goal of this repository is test:
+• Room
+• Hilt
+• Coroutines, Flow
+• Compose
