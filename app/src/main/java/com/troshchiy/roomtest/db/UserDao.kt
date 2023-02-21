@@ -1,11 +1,12 @@
 package com.troshchiy.roomtest.db
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao interface UserDao {
 
     @get:Query("SELECT * FROM ${UserScheme.TABLE_NAME}")
-    val all: List<User>
+    val all: Flow<List<User>>
 
     @Query("SELECT * FROM ${UserScheme.TABLE_NAME} WHERE ${UserScheme.LAST_NAME} = :lastName")
     fun getByLastName(lastName: String): User

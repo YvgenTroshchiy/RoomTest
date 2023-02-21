@@ -1,6 +1,6 @@
 package com.troshchiy.roomtest.db
 
-import android.util.Log
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 private val tag = UsersRepositoryImpl::class.java.simpleName
@@ -8,6 +8,7 @@ private val tag = UsersRepositoryImpl::class.java.simpleName
 interface UsersRepository {
     suspend fun fillDb() {}
     suspend fun clearDb() {}
+    fun getUsers(): Flow<List<User>>
     suspend fun logDataBase() {}
 }
 
@@ -37,10 +38,14 @@ class UsersRepositoryImpl @Inject constructor(private val database: AppDatabase)
         database.userDao().clear()
     }
 
+    override fun getUsers(): Flow<List<User>> {
+        return database.userDao().all
+    }
+
     override suspend fun logDataBase() {
         val allUsers = database.userDao().all
 
-        Log.d(tag, "allUsers.size: ${allUsers.size}")
-        Log.d(tag, allUsers.toString())
+//        Log.d(tag, "allUsers.size: ${allUsers.size}")
+//        Log.d(tag, allUsers.toString())
     }
 }

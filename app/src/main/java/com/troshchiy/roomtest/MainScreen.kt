@@ -2,16 +2,21 @@ package com.troshchiy.roomtest
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.troshchiy.roomtest.db.User
 import com.troshchiy.roomtest.ui.theme.RoomTestTheme
 
 // TODO: don't pass VM hoisting callbacks
-@Composable fun MainScreen(viewModel: MainViewModel) {
-    Column {
+@Composable
+fun MainScreen(users: State<List<User>>, viewModel: MainViewModel) {
+    Column(modifier = Modifier.fillMaxSize()) {
         Row() {
             Button(onClick = { viewModel.clearDb() }) {
                 Text(text = "Clear")
@@ -26,7 +31,12 @@ import com.troshchiy.roomtest.ui.theme.RoomTestTheme
                 Text(text = "Add")
             }
         }
-        LazyColumn(content = { })
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(users.value.size) {
+                val user = users.value[it]
+                Text(text = "${user.lastName} ${user.firstName}")
+            }
+        }
     }
 }
 
