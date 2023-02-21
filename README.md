@@ -10,4 +10,5 @@ Goal of this repository is test:
 
 ## Screenshots
 
-![](screenshots/main_screen.png | width="426")
+![](screenshots/main_screen.png | width=426)
+
