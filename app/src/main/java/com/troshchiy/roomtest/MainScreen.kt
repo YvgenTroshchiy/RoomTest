@@ -7,19 +7,19 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.troshchiy.roomtest.db.DbManager
 import com.troshchiy.roomtest.ui.theme.RoomTestTheme
 
-@Composable fun MainScreen() {
+// TODO: don't pass VM hoisting callbacks
+@Composable fun MainScreen(viewModel: MainViewModel) {
     Column {
         Row() {
-            Button(onClick = { DbManager.clearDb() }) {
+            Button(onClick = { viewModel.clearDb() }) {
                 Text(text = "Clear")
             }
-            Button(onClick = { DbManager.fillDb() }) {
+            Button(onClick = { viewModel.fillDb() }) {
                 Text(text = "Fill")
             }
-            Button(onClick = { DbManager.logDataBase() }) {
+            Button(onClick = { viewModel.logDataBase() }) {
                 Text(text = "Log")
             }
             Button(onClick = { }) {
@@ -32,6 +32,6 @@ import com.troshchiy.roomtest.ui.theme.RoomTestTheme
 
 @Preview(showBackground = true) @Composable fun DefaultPreview() {
     RoomTestTheme {
-        MainScreen()
+//        MainScreen(MainViewModel(null))
     }
 }
