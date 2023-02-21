@@ -10,4 +10,4 @@ Goal of this repository is test:
 
 ## Screenshots
 
-<img src="screenshots/screenshots.png"/>
+<img src="screenshots/main_screen.png"/>
