@@ -10,4 +10,4 @@ Goal of this repository is test:
 
 ## Screenshots
 
-<img src="screenshots/main_screen.png width="426" height="900"/>
+![](screenshots/main_screen.png | width="426")
