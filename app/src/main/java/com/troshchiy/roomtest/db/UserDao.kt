@@ -1,14 +1,19 @@
 package com.troshchiy.roomtest.db
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
-@Dao interface UserDao {
+@Dao
+interface UserDao {
 
-    @get:Query("SELECT * FROM ${UserScheme.TABLE_NAME}")
+    @get:Query("SELECT * FROM user")
     val all: Flow<List<User>>
 
-    @Query("SELECT * FROM ${UserScheme.TABLE_NAME} WHERE ${UserScheme.LAST_NAME} = :lastName")
+    @Query("SELECT * FROM user WHERE last_name = :lastName")
     fun getByLastName(lastName: String): User
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -23,10 +28,10 @@ import kotlinx.coroutines.flow.Flow
     @Delete
     fun deleteUsers(vararg users: User)
 
-    @Query("DELETE FROM ${UserScheme.TABLE_NAME} WHERE ${UserScheme.LAST_NAME} = :lastName")
+    @Query("DELETE FROM user WHERE last_name = :lastName")
     fun deleteByLastName(lastName: String)
 
-    @Query("DELETE FROM ${UserScheme.TABLE_NAME}")
+    @Query("DELETE FROM user")
     fun clear()
 
 }
