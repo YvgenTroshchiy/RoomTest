@@ -1,5 +1,6 @@
 package com.troshchiy.roomtest.db
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -44,8 +45,8 @@ class UsersRepositoryImpl @Inject constructor(private val database: AppDatabase)
 
     override suspend fun logDataBase() {
         val allUsers = database.userDao().all
-
-//        Log.d(tag, "allUsers.size: ${allUsers.size}")
-//        Log.d(tag, allUsers.toString())
+        allUsers.collect {
+            Log.d(tag, "allUsers: $it")
+        }
     }
 }

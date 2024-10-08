@@ -19,7 +19,7 @@ class UserScheme {
 }
 
 @Entity(tableName = TABLE_NAME) data class User(
-    @PrimaryKey(autoGenerate = true) var _id: Int = 0,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = FIRST_NAME) var firstName: String? = null,
     @ColumnInfo(name = LAST_NAME) var lastName: String? = null,
     @ColumnInfo(name = AGE) var age: Int? = null
